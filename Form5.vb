@@ -87,7 +87,7 @@ Public Class Form5
 
             If imageFiles.Length > 0 Then
                 For Each filePath In imageFiles
-                   
+                    
                     Dim img As Image = Image.FromFile(filePath)
 
                     
@@ -95,7 +95,7 @@ Public Class Form5
                     Dim pbWidth As Integer = flpMap.ClientSize.Width - 20 
                     Dim pbHeight As Integer = CInt(pbWidth / aspectRatio)
 
-                    
+                   
                     Dim pb As New PictureBox With {
                         .Image = img,
                         .SizeMode = PictureBoxSizeMode.StretchImage,
