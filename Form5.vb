@@ -73,29 +73,29 @@ Public Class Form5
 
     Private Sub DisplayRoomImage(roomName As String)
         Try
-            ' Validate that the directory exists
+            
             If Not Directory.Exists(roomImagePath) Then
                 MessageBox.Show("The image directory does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return
             End If
 
-            ' Search for image files named RoomName_1.png, RoomName_2.png, etc.
+            
             Dim imageFiles As String() = Directory.GetFiles(roomImagePath, roomName & "_*.png")
 
-            ' Clear any existing images in the FlowLayoutPanel
+            
             flpMap.Controls.Clear()
 
             If imageFiles.Length > 0 Then
                 For Each filePath In imageFiles
-                    ' Load the image
+                   
                     Dim img As Image = Image.FromFile(filePath)
 
-                    ' Calculate dimensions to fit the FlowLayoutPanel while maintaining aspect ratio
+                    
                     Dim aspectRatio As Double = img.Width / img.Height
-                    Dim pbWidth As Integer = flpMap.ClientSize.Width - 20 ' Leave some padding
+                    Dim pbWidth As Integer = flpMap.ClientSize.Width - 20 
                     Dim pbHeight As Integer = CInt(pbWidth / aspectRatio)
 
-                    ' Create a PictureBox with the calculated dimensions
+                    
                     Dim pb As New PictureBox With {
                         .Image = img,
                         .SizeMode = PictureBoxSizeMode.StretchImage,
@@ -106,7 +106,7 @@ Public Class Form5
                     flpMap.Controls.Add(pb)
                 Next
 
-                ' Make the FlowLayoutPanel scrollable
+                
                 flpMap.AutoScroll = True
                 flpMap.FlowDirection = FlowDirection.TopDown
                 flpMap.WrapContents = False
@@ -119,7 +119,7 @@ Public Class Form5
     End Sub
 
     Private Sub flpMap_Resize(sender As Object, e As EventArgs) Handles flpMap.Resize
-        ' Adjust PictureBox sizes dynamically when FlowLayoutPanel resizes
+        
         For Each ctrl As Control In flpMap.Controls
             If TypeOf ctrl Is PictureBox Then
                 Dim pb As PictureBox = DirectCast(ctrl, PictureBox)
@@ -144,6 +144,6 @@ Public Class Form5
     End Sub
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
-        ' Placeholder for additional functionality
+        
     End Sub
 End Class
